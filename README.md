@@ -7,6 +7,12 @@ npm install --save rn-redux-mixpanel
 ```
 
 ### Usage
+Configure the `mixpanel` redux middleware by invoking with an options object, containing:
+
+1. `token` – Your Mixpanel application token.
+2. `selectDistinctId` – A selector function that returns the `distinct_id` (user id), given your store state.
+3. `blacklist` – An optional array of blacklisted action types.
+
 ```javascript
 // store/index.js
 import { createStore, combineReducers, applyMiddleware } from 'redux'
