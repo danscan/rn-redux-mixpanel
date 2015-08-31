@@ -18,8 +18,8 @@ const middleware = [
     // Mixpanel API token
     token: YOUR_MIXPANEL_TOKEN,
 
-    // Function that returns the value to use for `distinct_id`
-    getDistinctId: state => state.session ? state.session.userId : null,
+    // Selector that returns the value to use for `distinct_id`
+    selectDistinctId: state => state.session ? state.session.userId : null,
 
     // Blacklisted action types
     blacklist: ['INIT_PERSISTENCE', 'HYDRATE', 'SESSION_ACTIVITY'] 

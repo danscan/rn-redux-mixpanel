@@ -8,7 +8,7 @@ const MIXPANEL_REQUEST_PROTOCOL = 'http'
 const MIXPANEL_HOST = 'api.mixpanel.com'
 const MIXPANEL_TRACK_ENDPOINT = '/track'
 
-export default mixpanel = ({ token, getDistinctId = ()=>null, blacklist = [] }) => store => next => action => {
+export default mixpanel = ({ token, selectDistinctId = ()=>null, blacklist = [] }) => store => next => action => {
   // Don't track if action type is in blacklist or is falsey
   const actionIsBlacklisted = blacklist.indexOf(action.type) >= 0
   if (actionIsBlacklisted || !action.type) {
@@ -18,7 +18,7 @@ export default mixpanel = ({ token, getDistinctId = ()=>null, blacklist = [] }) 
   // Get state & action data; build event properties
   const state = store.getState()
   const eventName = action.type
-  const eventDistinctId = getDistinctId(state)
+  const eventDistinctId = selectDistinctId(state)
   const eventProperties = {
     'token': token,
     'distinct_id': eventDistinctId,
