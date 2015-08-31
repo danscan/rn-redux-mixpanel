@@ -1,6 +1,6 @@
 {
   "name": "rn-redux-mixpanel",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Configurable redux middleware that sends your actions to Mixpanel. Works with React Native! ",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/danscan/redux-mixpanel#readme",
   "dependencies": {
+    "buffer": "^3.4.3",
     "superagent": "^1.3.0"
   }
 }

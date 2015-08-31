@@ -1,3 +1,4 @@
+import Buffer from 'buffer'
 import request from 'superagent'
 
 // Configuration Constants
@@ -30,7 +31,7 @@ export default mixpanel = ({ token, selectDistinctId = ()=>null, blacklist = [] 
     properties: eventProperties,
   }
   const eventTrackRequestDataString = JSON.stringify(eventTrackRequestData)
-  const eventTrackRequestDataBase64String = btoa(eventTrackRequestDataString)
+  const eventTrackRequestDataBase64String = Buffer(eventTrackRequestDataString).toString('base64')
 
   // Track action with mixpanel
   const eventTrackRequestUrl = `${MIXPANEL_REQUEST_PROTOCOL}://${MIXPANEL_HOST}${MIXPANEL_TRACK_ENDPOINT}`
