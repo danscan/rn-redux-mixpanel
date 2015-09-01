@@ -1,8 +1,8 @@
 {
   "name": "rn-redux-mixpanel",
-  "version": "1.0.4",
-  "description": "Configurable redux middleware that sends your actions to Mixpanel. Works with React Native! ",
-  "main": "index.js",
+  "version": "1.1.0",
+  "description": "Configurable redux middleware that sends your actions & user profile data to Mixpanel.",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
