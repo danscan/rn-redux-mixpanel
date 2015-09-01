@@ -11,7 +11,6 @@ export default mixpanel = ({ token, selectDistinctId = ()=>null, selectUserProfi
   // Get store state; select distinct id for action & state
   const state = store.getState()
   const distinctId = selectDistinctId(action, state)
-  console.log('distinctId:', distinctId)
   
   // Track action event with Mixpanel
   trackEvent({
