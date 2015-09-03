@@ -2,7 +2,7 @@ import { Buffer } from 'buffer'
 import request from 'superagent'
 
 // Configuration Constants
-const DEBUG = process && process.env && process.env['NODE_ENV'] === 'development'
+const DEBUG = typeof process === 'object' && process.env && process.env['NODE_ENV'] === 'development'
 
 // Mixpanel Service Constants
 const MIXPANEL_REQUEST_PROTOCOL = 'http'
