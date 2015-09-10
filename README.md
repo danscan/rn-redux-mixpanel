@@ -64,3 +64,4 @@ Configure the `mixpanel` redux middleware by invoking with an options object, co
 2. `blacklist` – An optional array of blacklisted action types.
 3. `selectDistinctId` – A selector function that returns the `distinct_id` (user id), given the action and store state.
 4. `selectUserProfileData` – A selector function that returns user profile data for a Mixpanel Engage request, given the action and store state.
+5. `selectProperties` - An optional selector function that returns Mixpanel properties to add to the request, given the action and store state.
