@@ -1,7 +1,13 @@
 import trackEvent from './api/trackEvent'
 import updateUserProfile from './api/updateUserProfile'
 
-export default mixpanel = ({ token, selectDistinctId = ()=>null, selectUserProfileData = ()=>null, blacklist = [] }) => store => next => action => {
+export default mixpanel = ({
+  token,
+  selectDistinctId = () => null,
+  selectUserProfileData = () => null,
+  selectProperties = () => null,
+  blacklist = []
+}) => store => next => action => {
   // Don't track if action type is in blacklist or is falsey
   const actionIsBlacklisted = blacklist.indexOf(action.type) >= 0
   if (actionIsBlacklisted || !action.type) {
@@ -11,12 +17,14 @@ export default mixpanel = ({ token, selectDistinctId = ()=>null, selectUserProfi
   // Get store state; select distinct id for action & state
   const state = store.getState()
   const distinctId = selectDistinctId(action, state)
-  
+  const properties = selectProperties(action, state)
+
   // Track action event with Mixpanel
   trackEvent({
     token,
     distinctId,
     eventName: action.type,
+    eventData: properties
   })
 
   // Select user profile data for action; if it selects truthy data,
