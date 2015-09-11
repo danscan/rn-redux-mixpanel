@@ -12,7 +12,7 @@ export default sendMixpanelRequest = ({ endpoint, data }) => {
   const requestDataString = JSON.stringify(data)
   const requestDataBase64String = new Buffer(requestDataString).toString('base64')
 
-  const requestUrl = `${MIXPANEL_REQUEST_PROTOCOL}://${MIXPANEL_HOST}${endpoint}`
+  const requestUrl = `${MIXPANEL_REQUEST_PROTOCOL}://${MIXPANEL_HOST}${endpoint}?ip=1`
   const req = request
     .get(requestUrl)
     .query(`data=${requestDataBase64String}`)
