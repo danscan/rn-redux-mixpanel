@@ -14,15 +14,20 @@ npm install --save rn-redux-mixpanel
 import mixpanel from 'rn-redux-mixpanel'
 import { INIT_PERSISTENCE, HYDRATE, SESSION_ACTIVITY, SIGN_IN } from '../../constants/ActionTypes'
 
+// define a blacklist to be used in the ignoreAction filter
+const blacklist = [
+  INIT_PERSISTENCE,
+  HYDRATE,
+  SESSION_ACTIVITY,
+];
+
 // Export configured mixpanel redux middleware
 export default mixpanel({
 
-  // Blacklisted Action types
-  blacklist: [
-    INIT_PERSISTENCE,
-    HYDRATE,
-    SESSION_ACTIVITY,
-  ],
+  // add ignore action filter
+  ignoreAction: (action) => {
+    return blacklist.indexOf(action.type) > -1;
+  },
 
   // Mixpanel Token
   token: YOUR_MIXPANEL_TOKEN,
@@ -61,7 +66,7 @@ export default mixpanel({
 Configure the `mixpanel` redux middleware by invoking with an options object, containing:
 
 1. `token` – Your Mixpanel application token.
-2. `blacklist` – An optional array of blacklisted action types.
+2. `ignoreAction` – An optional function, that receives an action and returns a truthy value, if it should be ignored.
 3. `selectDistinctId` – A selector function that returns the `distinct_id` (user id), given the action and store state.
 4. `selectUserProfileData` – A selector function that returns user profile data for a Mixpanel Engage request, given the action and store state.
 5. `selectProperties` - An optional selector function that returns Mixpanel properties to add to the request, given the action and store state.

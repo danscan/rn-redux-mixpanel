@@ -6,11 +6,10 @@ export default mixpanel = ({
   selectDistinctId = () => null,
   selectUserProfileData = () => null,
   selectProperties = () => null,
-  blacklist = []
+  ignoreAction = (action) => false,
 }) => store => next => action => {
-  // Don't track if action type is in blacklist or is falsey
-  const actionIsBlacklisted = blacklist.indexOf(action.type) >= 0
-  if (actionIsBlacklisted || !action.type) {
+  // Don't track falsy actions or actions that should be ignored
+  if (!action.type || ignoreAction(action)) {
     return next(action)
   }
 
