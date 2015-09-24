@@ -13,6 +13,7 @@ npm install --save rn-redux-mixpanel
 // store/index.js
 import mixpanel from 'rn-redux-mixpanel'
 import { INIT_PERSISTENCE, HYDRATE, SESSION_ACTIVITY, SIGN_IN } from '../../constants/ActionTypes'
+import humanize from 'underscore.string'
 
 // Export configured mixpanel redux middleware
 export default mixpanel({
@@ -26,6 +27,9 @@ export default mixpanel({
 
   // Mixpanel Token
   token: YOUR_MIXPANEL_TOKEN,
+
+  // derive Mixpanel event name from action and/or state
+  selectEventName: (action, state) => humanize(action.type),
 
   // Per-action selector: Mixpanel event `distinct_id`
   selectDistinctId: (action, state) => {
@@ -64,4 +68,5 @@ Configure the `mixpanel` redux middleware by invoking with an options object, co
 2. `blacklist` – An optional array of blacklisted action types.
 3. `selectDistinctId` – A selector function that returns the `distinct_id` (user id), given the action and store state.
 4. `selectUserProfileData` – A selector function that returns user profile data for a Mixpanel Engage request, given the action and store state.
-5. `selectProperties` - An optional selector function that returns Mixpanel properties to add to the request, given the action and store state.
+5. `selectEventName` – A optional selector function that returns the Mixpanel event name, given the action and store state. By default action.type.
+6. `selectProperties` - An optional selector function that returns Mixpanel properties to add to the request, given the action and store state.
