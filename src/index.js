@@ -5,6 +5,7 @@ export default mixpanel = ({
   token,
   selectDistinctId = () => null,
   selectUserProfileData = () => null,
+  selectEventName = (action) => action.type, 
   selectProperties = () => null,
   ignoreAction = (action) => false,
 }) => store => next => action => {
@@ -16,13 +17,14 @@ export default mixpanel = ({
   // Get store state; select distinct id for action & state
   const state = store.getState()
   const distinctId = selectDistinctId(action, state)
+  const eventName = selectEventName(action, state)
   const properties = selectProperties(action, state)
 
   // Track action event with Mixpanel
   trackEvent({
     token,
     distinctId,
-    eventName: action.type,
+    eventName: eventName,
     eventData: properties
   })
 
