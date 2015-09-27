@@ -5,7 +5,7 @@ import request from 'superagent'
 const DEBUG = typeof process === 'object' && process.env && process.env['NODE_ENV'] === 'development'
 
 // Mixpanel Service Constants
-const MIXPANEL_REQUEST_PROTOCOL = 'http'
+const MIXPANEL_REQUEST_PROTOCOL = 'https'
 const MIXPANEL_HOST = 'api.mixpanel.com'
 
 export default sendMixpanelRequest = ({ endpoint, data }) => {
