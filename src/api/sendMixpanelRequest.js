@@ -21,10 +21,9 @@ export default sendMixpanelRequest = ({ endpoint, data }) => {
         return
       }
 
-      console.log('mixpanel request:', req)
-      if (error)
+      if (error) {
         console.log('mixpanel error:', error)
-      console.log('mixpanel response:', res)
+      }
     })
 
   return req
