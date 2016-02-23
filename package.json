@@ -4,7 +4,7 @@
   "description": "Configurable redux middleware that sends your actions & user profile data to Mixpanel.",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel --out-file lib/index.js --presets es2015,react --plugins transform-object-rest-spread -- src",
+    "build": "babel --out-dir lib --presets es2015,react --plugins transform-object-rest-spread -- src",
     "clean": "rm -rf lib && mkdir lib",
     "prepublish": "npm run clean && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
