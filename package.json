@@ -2,8 +2,11 @@
   "name": "rn-redux-mixpanel",
   "version": "1.1.6",
   "description": "Configurable redux middleware that sends your actions & user profile data to Mixpanel.",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "build": "babel --out-file lib/index.js --presets es2015,react --plugins transform-object-rest-spread -- src",
+    "clean": "rm -rf lib && mkdir lib",
+    "prepublish": "npm run clean && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,5 +30,12 @@
   "dependencies": {
     "buffer": "^3.4.3",
     "superagent": "^1.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
+    "babel-plugin-transform-object-rest-spread": "^6.5.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0"
   }
 }
