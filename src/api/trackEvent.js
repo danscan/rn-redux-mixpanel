@@ -3,7 +3,7 @@ import sendMixpanelRequest from './sendMixpanelRequest'
 // Configuration Constants
 const MIXPANEL_TRACK_ENDPOINT = '/track'
 
-export default trackEvent = ({ token, eventName, distinctId, eventData = {} }) => {
+export default function trackEvent ({ token, eventName, distinctId, eventData = {} }) {
   // Build event properties
   const eventProperties = {
     token,

@@ -1,7 +1,7 @@
 import trackEvent from './api/trackEvent'
 import updateUserProfile from './api/updateUserProfile'
 
-export default mixpanel = ({
+export default function mixpanel({
   token,
   selectDistinctId = () => null,
   selectUserProfileData = () => null,

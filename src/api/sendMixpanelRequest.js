@@ -8,7 +8,7 @@ const DEBUG = typeof process === 'object' && process.env && process.env['NODE_EN
 const MIXPANEL_REQUEST_PROTOCOL = 'https'
 const MIXPANEL_HOST = 'api.mixpanel.com'
 
-export default sendMixpanelRequest = ({ endpoint, data }) => {
+export default function sendMixpanelRequest ({ endpoint, data }) {
   const requestDataString = JSON.stringify(data)
   const requestDataBase64String = new Buffer(requestDataString).toString('base64')
 
