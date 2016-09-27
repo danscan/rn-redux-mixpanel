@@ -62,6 +62,19 @@ export default mixpanel({
       return userProfileData
     }
   },
+
+  // Per-action selector: Mixpanel Engage user profile set data once
+  selectUserProfileDataOnce: (action, state) => {
+    const user = action.user
+
+    // Only update user profile data on SIGN_IN action type
+    if (SIGN_IN === action.type && user) {
+      // User data to `$set_once` via Mixpanel Engage request
+      return {
+        'Has Logged In': true,
+      }
+    }
+  }
 })
 ```
 
@@ -73,5 +86,6 @@ Configure the `mixpanel` redux middleware by invoking with an options object, co
 2. `ignoreAction` – An optional function, that receives an action and returns a truthy value, if it should be ignored.
 3. `selectDistinctId` – A selector function that returns the `distinct_id` (user id), given the action and store state.
 4. `selectUserProfileData` – A selector function that returns user profile data for a Mixpanel Engage request, given the action and store state.
-5. `selectEventName` – A optional selector function that returns the Mixpanel event name, given the action and store state. By default action.type.
-6. `selectProperties` - An optional selector function that returns Mixpanel properties to add to the request, given the action and store state.
+5. `selectUserProfileDataOnce` - A selector that returns people properties and sets it for once. (uses `$set_once` people property)
+6. `selectEventName` – A optional selector function that returns the Mixpanel event name, given the action and store state. By default action.type.
+7. `selectProperties` - An optional selector function that returns Mixpanel properties to add to the request, given the action and store state.

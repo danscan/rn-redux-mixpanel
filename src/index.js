@@ -5,6 +5,7 @@ export default function mixpanel({
   token,
   selectDistinctId = () => null,
   selectUserProfileData = () => null,
+  selectUserProfileDataOnce = () => null,
   selectEventName = (action) => action.type,
   selectProperties = () => null,
   ignoreAction = (action) => false,
@@ -32,12 +33,20 @@ export default function mixpanel({
     // Select user profile data for action; if it selects truthy data,
     // update user profile on Mixpanel
     const userProfileData = selectUserProfileData(action, state)
+    const userProfileDataOnce = selectUserProfileDataOnce(action, state)
     if (userProfileData) {
       updateUserProfile({
         token,
         distinctId,
         userProfileData,
       })
+    }
+    if (userProfileDataOnce) {
+      updateUserProfile({
+        token,
+        distinctId,
+        userProfileData: userProfileDataOnce,
+      }, true)
     }
 
     return next(action)

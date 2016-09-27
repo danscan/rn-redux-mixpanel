@@ -1,6 +1,6 @@
 {
   "name": "rn-redux-mixpanel",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "Configurable redux middleware that sends your actions & user profile data to Mixpanel.",
   "main": "lib/index.js",
   "scripts": {
